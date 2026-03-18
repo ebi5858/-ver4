@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ここる — ユーザーアンケート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =============================================
+       KOKORU SURVEY — CSS
+       ============================================= */
+
+```
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --mauve:      #E8DFF5;
+  --mauve-mid:  #C9B8E8;
+  --mauve-dk:   #7C5CBF;
+  --mauve-dkr:  #5A3D9A;
+  --milk:       #FDFAF7;
+  --cream:      #F7F2EC;
+  --warm:       #F0EAE0;
+  --sky:        #D8EEF8;
+  --sky-dk:     #4A9CC4;
+  --mint:       #D8F0E8;
+  --mint-dk:    #3A9B72;
+  --amber:      #F5E9D0;
+  --amber-dk:   #B8860B;
+  --rose:       #F5DDE3;
+  --rose-dk:    #C4758A;
+  --text:       #251E35;
+  --text-m:     #5A5068;
+  --text-l:     #9A8FA8;
+  --shadow-sm:  0 2px 12px rgba(80, 50, 120, 0.08);
+  --shadow-md:  0 6px 30px rgba(80, 50, 120, 0.13);
+  --shadow-lg:  0 12px 50px rgba(80, 50, 120, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'BIZ UDGothic', sans-serif;
+  background: linear-gradient(160deg, #EDE8F5 0%, #DDD8EA 50%, #E8EDE8 100%);
+  min-height: 100vh;
+  color: var(--text);
+  padding: 40px 16px 80px;
+}
+
+/* ── Hero Header ── */
+.hero {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  text-align: center;
+  padding: 48px 32px;
+  background: linear-gradient(145deg, #7C5CBF, #5A3D9A);
+  border-radius: 32px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  top: -80px;
+  right: -60px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  bottom: -50px;
+  left: -40px;
+}
+
+.hero-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.hero-logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 40px;
+  color: #fff;
+  letter-spacing: 0.06em;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo span {
+  color: #D4BCFF;
+}
+
+.hero-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 12px;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Form Container ── */
+.form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── Section Card ── */
+.section-card {
+  background: var(--milk);
+  border-radius: 28px;
+  padding: 32px 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.5s ease both;
+}
+
+.section-card:nth-child(1) { animation-delay: 0.1s; }
+.section-card:nth-child(2) { animation-delay: 0.2s; }
+.section-card:nth-child(3) { animation-delay: 0.3s; }
+.section-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--mauve);
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--mauve);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--mauve-dkr);
+}
+
+.section-num {
+  font-size: 11px;
+  color: var(--text-l);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── Question Block ── */
+.q-block {
+  margin-bottom: 28px;
+}
+
+.q-block:last-child {
+  margin-bottom: 0;
+}
+
+.q-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.q-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--mauve-dk);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.q-optional {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--text-l);
+  background: var(--cream);
+  border-radius: 100px;
+  padding: 2px 8px;
+  margin-left: 6px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+/* ── Star Rating ── */
+.star-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.star-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-l);
+  margin-top: 6px;
+  padding: 0 2px;
+}
+
+.stars {
+  display: flex;
+  gap: 6px;
+}
+
+.star-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 2px solid var(--mauve);
+  background: var(--milk);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-l);
+}
+
+.star-btn:hover {
+  border-color: var(--mauve-dk);
+  background: var(--mauve);
+  transform: scale(1.08);
+}
+
+.star-btn.active {
+  border-color: var(--mauve-dk);
+  background: var(--mauve-dk);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(124, 92, 191, 0.3);
+}
+
+/* ── Radio Options ── */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.radio-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--mauve);
+  background: var(--milk);
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 14px;
+  color: var(--text-m);
+  font-weight: 700;
+  user-select: none;
+}
+
+.radio-opt:hover {
+  border-color: var(--mauve-dk);
+  background: var(--mauve);
+  color: var(--mauve-dkr);
+}
+
+.radio-opt input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--mauve-mid);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.radio-opt input[type="radio"]:checked {
+  border-color: var(--mauve-dk);
+  background: var(--mauve-dk);
+}
+
+.radio-opt input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-opt:has(input:checked) {
+  border-color: var(--mauve-dk);
+  background: var(--mauve);
+  color: var(--mauve-dkr);
+}
+
+/* ── Checkbox Options ── */
+.check-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.check-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--mauve);
+  background: var(--milk);
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 14px;
+  color: var(--text-m);
+  font-weight: 700;
+  user-select: none;
+}
+
+.check-opt:hover {
+  border-color: var(--mauve-dk);
+  background: var(--mauve);
+  color: var(--mauve-dkr);
+}
+
+.check-opt input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--mauve-mid);
+  border-radius: 5px;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.check-opt input[type="checkbox"]:checked {
+  border-color: var(--mauve-dk);
+  background: var(--mauve-dk);
+}
+
+.check-opt input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.check-opt:has(input:checked) {
+  border-color: var(--mauve-dk);
+  background: var(--mauve);
+  color: var(--mauve-dkr);
+}
+
+/* ── Text Input ── */
+.text-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--mauve);
+  background: var(--milk);
+  font-family: 'BIZ UDGothic', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.text-input:focus {
+  border-color: var(--mauve-dk);
+  box-shadow: 0 0 0 3px rgba(124, 92, 191, 0.12);
+}
+
+.text-input::placeholder {
+  color: var(--text-l);
+}
+
+/* ── Divider ── */
+.q-divider {
+  height: 1px;
+  background: var(--mauve);
+  margin: 24px 0;
+  opacity: 0.6;
+}
+
+/* ── Submit Button ── */
+.submit-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 18px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #7C5CBF, #5A3D9A);
+  color: #fff;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 28px rgba(124, 92, 191, 0.38);
+  transition: all 0.2s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(124, 92, 191, 0.45);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.submit-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-l);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+/* ── Thank You Screen ── */
+.thankyou {
+  display: none;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 32px;
+  background: var(--milk);
+  border-radius: 32px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.5s ease both;
+}
+
+.thankyou.show {
+  display: block;
+}
+
+.thankyou-icon {
+  font-size: 72px;
+  display: block;
+  margin-bottom: 20px;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.thankyou-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  color: var(--mauve-dkr);
+  margin-bottom: 12px;
+}
+
+.thankyou-msg {
+  font-size: 14px;
+  color: var(--text-l);
+  line-height: 1.85;
+}
+
+.thankyou-conf {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 28px;
+  margin: 24px 0;
+}
+
+/* ── Progress Bar ── */
+.progress-wrap {
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-l);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--mauve-dk);
+  border-radius: 100px;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  body { padding: 24px 12px 60px; }
+  .hero { padding: 36px 20px; border-radius: 24px; }
+  .hero-logo { font-size: 32px; }
+  .section-card { padding: 24px 18px; border-radius: 22px; }
+  .stars { gap: 4px; }
+  .star-btn { width: 38px; height: 38px; font-size: 18px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Hero ── -->
+
+  <header class="hero">
+    <span class="hero-icon">🫧</span>
+    <div class="hero-logo">こ<span>こ</span>る</div>
+    <div class="hero-title">ユーザー体験アンケート</div>
+    <p class="hero-desc">
+      アプリを使ってみての感想を聞かせてください。<br />
+      あなたの声が、ここるをもっと良くする力になります。
+    </p>
+    <div class="hero-badge">📝 所要時間：約3〜5分 &nbsp;|&nbsp; 任意回答OK</div>
+  </header>
+
+  <!-- ── Progress ── -->
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>回答の進み具合</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- ── Form ── -->
+
+  <form class="form-wrap" id="survey-form" novalidate>
+
+```
+<!-- ════ SECTION 1：全体印象 ════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-icon">✨</div>
+    <div>
+      <div class="section-title">全体的な印象</div>
+      <div class="section-num">SECTION 1 / 4</div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">1</span>
+      <span>アプリを使ってみて、全体的にどう感じましたか？</span>
+    </div>
+    <div class="stars" data-group="q1">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>あまり良くない</span><span>とても良い</span>
+    </div>
+    <input type="hidden" name="q1" id="q1-val" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">2</span>
+      <span>「安心できる場所」という雰囲気は感じられましたか？</span>
+    </div>
+    <div class="stars" data-group="q2">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>全く感じなかった</span><span>とても感じた</span>
+    </div>
+    <input type="hidden" name="q2" id="q2-val" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q3 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">3</span>
+      <span>デザイン・色合いはどうでしたか？</span>
+    </div>
+    <div class="stars" data-group="q3">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>あまり好きじゃない</span><span>とても好き</span>
+    </div>
+    <input type="hidden" name="q3" id="q3-val" />
+  </div>
+</div>
+
+<!-- ════ SECTION 2：各機能 ════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-icon">🔍</div>
+    <div>
+      <div class="section-title">各機能について</div>
+      <div class="section-num">SECTION 2 / 4</div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">4</span>
+      <span>メンタル診断の質問は答えやすかったですか？</span>
+    </div>
+    <div class="stars" data-group="q4">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>答えにくかった</span><span>とても答えやすかった</span>
+    </div>
+    <input type="hidden" name="q4" id="q4-val" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">5</span>
+      <span>悩みタグは自分に合うものが選べましたか？</span>
+    </div>
+    <div class="radio-group">
+      <label class="radio-opt">
+        <input type="radio" name="q5" value="選べた" /> 選べた
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q5" value="だいたい選べた" /> だいたい選べた
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q5" value="あまり選べなかった" /> あまり選べなかった
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q5" value="欲しいタグがなかった" /> 欲しいタグがなかった
+      </label>
+    </div>
+  </div>
+
+  <!-- Q5 追加：欲しいタグ -->
+  <div class="q-block" style="margin-top: 12px;">
+    <div class="q-label" style="font-weight: 400; color: var(--text-m);">
+      <span class="q-num" style="background: var(--text-l);">+</span>
+      <span>「こんなタグが欲しかった」があれば教えてください<span class="q-optional">任意</span></span>
+    </div>
+    <input type="text" class="text-input" name="q5_free" placeholder="例：眠れない、家族との関係…" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q6 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">6</span>
+      <span>マッチングの「共感度スコア」は参考になりますか？</span>
+    </div>
+    <div class="stars" data-group="q6">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>参考にならない</span><span>とても参考になる</span>
+    </div>
+    <input type="hidden" name="q6" id="q6-val" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q7 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">7</span>
+      <span>フレンドタスクの難易度はどうでしたか？</span>
+    </div>
+    <div class="radio-group">
+      <label class="radio-opt">
+        <input type="radio" name="q7" value="ちょうどいい" /> ちょうどいい
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q7" value="少し簡単すぎる" /> 少し簡単すぎる
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q7" value="少し難しすぎる" /> 少し難しすぎる
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="q7" value="レベルによって違う" /> レベルによって違う
+      </label>
+    </div>
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q8 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">8</span>
+      <span>「卒業機能」というゴール設定はモチベーションになりますか？</span>
+    </div>
+    <div class="stars" data-group="q8">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>モチベにならない</span><span>とてもなる</span>
+    </div>
+    <input type="hidden" name="q8" id="q8-val" />
+  </div>
+</div>
+
+<!-- ════ SECTION 3：改善点 ════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <div>
+      <div class="section-title">改善・ご要望</div>
+      <div class="section-num">SECTION 3 / 4</div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">9</span>
+      <span>使いにくいと感じた場面はありましたか？<span class="q-optional">任意</span></span>
+    </div>
+    <textarea class="text-input" name="q9" rows="3" placeholder="例：登録の項目が多かった、マッチングの意味がわかりにくかった…"></textarea>
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q10 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">10</span>
+      <span>あったら嬉しい機能は何ですか？<span class="q-optional">複数選択OK</span></span>
+    </div>
+    <div class="check-group">
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="日記・気分記録機能" /> 📔 日記・気分記録機能
+      </label>
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="専門家への相談" /> 👩‍⚕️ 専門家（カウンセラー）への相談
+      </label>
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="保護者向け報告機能" /> 👨‍👩‍👧 保護者向けの報告機能
+      </label>
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="グループチャット" /> 💬 グループチャット
+      </label>
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="音声通話" /> 🎙️ 音声通話（声でつながる）
+      </label>
+      <label class="check-opt">
+        <input type="checkbox" name="q10" value="達成バッジ" /> 🏅 達成バッジ・実績システム
+      </label>
+    </div>
+    <input type="text" class="text-input" name="q10_other" placeholder="その他、欲しい機能があれば…" style="margin-top: 10px;" />
+  </div>
+</div>
+
+<!-- ════ SECTION 4：総合 ════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-icon">🌟</div>
+    <div>
+      <div class="section-title">総合評価</div>
+      <div class="section-num">SECTION 4 / 4</div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">11</span>
+      <span>このアプリを同じ悩みを持つ人に紹介したいですか？</span>
+    </div>
+    <div class="stars" data-group="q11">
+      <button type="button" class="star-btn" data-val="1">😞</button>
+      <button type="button" class="star-btn" data-val="2">😕</button>
+      <button type="button" class="star-btn" data-val="3">😐</button>
+      <button type="button" class="star-btn" data-val="4">😊</button>
+      <button type="button" class="star-btn" data-val="5">😍</button>
+    </div>
+    <div class="star-labels">
+      <span>紹介したくない</span><span>ぜひ紹介したい</span>
+    </div>
+    <input type="hidden" name="q11" id="q11-val" />
+  </div>
+
+  <div class="q-divider"></div>
+
+  <!-- Q12 -->
+  <div class="q-block">
+    <div class="q-label">
+      <span class="q-num">12</span>
+      <span>最後に、一言メッセージをどうぞ<span class="q-optional">任意</span></span>
+    </div>
+    <textarea class="text-input" name="q12" rows="4" placeholder="感想・要望・応援メッセージなど、なんでもOKです🌱"></textarea>
+  </div>
+</div>
+
+<!-- ── Submit ── -->
+<div class="submit-wrap">
+  <button type="submit" class="btn-submit">
+    回答を送信する 🌸
+  </button>
+  <p class="submit-note">
+    回答内容は開発の改善にのみ使用されます。<br />
+    個人が特定される情報は収集していません。
+  </p>
+</div>
+```
+
+  </form>
+
+  <!-- ── Thank You ── -->
+
+  <div class="thankyou" id="thankyou">
+    <span class="thankyou-icon">🎉</span>
+    <div class="thankyou-conf">🎊 ✨ 💜 🌸 🎉</div>
+    <div class="thankyou-title">回答ありがとう！</div>
+    <p class="thankyou-msg">
+      あなたの声がここるをもっと良くします。<br />
+      本当にありがとうございました。<br /><br />
+      これからもここるをよろしくお願いします 🌱
+    </p>
+  </div>
+
+  <script>
+    /* =============================================
+       KOKORU SURVEY — JavaScript
+       ============================================= */
+
+    // ── Star Rating ──
+    document.querySelectorAll('.stars').forEach(group => {
+      const groupName = group.dataset.group;
+      const buttons   = group.querySelectorAll('.star-btn');
+      const hidden    = document.getElementById(groupName + '-val');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = parseInt(btn.dataset.val);
+          if (hidden) hidden.value = val;
+
+          buttons.forEach((b, i) => {
+            b.classList.toggle('active', i < val);
+          });
+
+          updateProgress();
+        });
+
+        // Hover preview
+        btn.addEventListener('mouseenter', () => {
+          const val = parseInt(btn.dataset.val);
+          buttons.forEach((b, i) => {
+            if (!group.querySelector('.active')) {
+              b.style.opacity = i < val ? '0.6' : '0.3';
+            }
+          });
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          buttons.forEach(b => { b.style.opacity = ''; });
+        });
+      });
+    });
+
+    // ── Progress Tracker ──
+    const TOTAL_QUESTIONS = 12;
+
+    function countAnswered() {
+      let count = 0;
+
+      // Star ratings (q1,q2,q3,q4,q6,q8,q11)
+      ['q1','q2','q3','q4','q6','q8','q11'].forEach(id => {
+        const el = document.getElementById(id + '-val');
+        if (el && el.value) count++;
+      });
+
+      // Radios (q5, q7)
+      ['q5','q7'].forEach(name => {
+        if (document.querySelector(`input[name="${name}"]:checked`)) count++;
+      });
+
+      // Checkboxes (q10) — count if at least one checked or other filled
+      if (
+        document.querySelector('input[name="q10"]:checked') ||
+        document.querySelector('input[name="q10_other"]').value.trim()
+      ) count++;
+
+      // Textareas — optional so count if filled
+      ['q9','q12'].forEach(name => {
+        const el = document.querySelector(`textarea[name="${name}"]`);
+        if (el && el.value.trim()) count++;
+      });
+
+      return count;
+    }
+
+    function updateProgress() {
+      const answered = countAnswered();
+      const pct      = Math.min(Math.round((answered / TOTAL_QUESTIONS) * 100), 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-pct').textContent  = pct + '%';
+    }
+
+    // Listen to radio/checkbox changes
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"], textarea, input[type="text"]')
+      .forEach(el => el.addEventListener('change', updateProgress));
+    document.querySelectorAll('textarea, input[type="text"]')
+      .forEach(el => el.addEventListener('input', updateProgress));
+
+    // ── Form Submit ──
+    document.getElementById('survey-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Collect all data
+      const data = new FormData(this);
+      const result = {};
+      for (const [key, value] of data.entries()) {
+        if (result[key]) {
+          result[key] = Array.isArray(result[key])
+            ? [...result[key], value]
+            : [result[key], value];
+        } else {
+          result[key] = value;
+        }
+      }
+
+      console.log('Survey result:', result);
+
+      // Show thank you
+      document.getElementById('survey-form').style.display  = 'none';
+      document.querySelector('.progress-wrap').style.display = 'none';
+      document.querySelector('.hero').style.marginBottom     = '24px';
+      document.getElementById('thankyou').classList.add('show');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
